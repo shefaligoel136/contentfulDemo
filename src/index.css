@@ -26,3 +26,15 @@ code {
   padding: 10px;
   border-radius: 20px;
 }
+
+.slide {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.courseCard1 {
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid black;
+}
