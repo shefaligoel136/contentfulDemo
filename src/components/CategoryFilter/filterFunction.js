@@ -3,7 +3,7 @@ import axios from "axios";
 
 function FilterFunction({ allData }) {
   const [instanceCount, setInstanceCount] = useState(0);
-  const [instance, setInstance] = useState([]);
+  const [instance, setInstance] = useState('');
 
   console.log("data", allData);
   useEffect(() => {
@@ -20,10 +20,10 @@ function FilterFunction({ allData }) {
   const instancesDetails = async () => {
     for (let i = 0; i < instanceCount; i++) {
       const data = await axios.get(
-        `https://api.chetnetwork.com/api/exploreHomes/get-data?filter={"limit":1,"skip":${i},"include":{"relation":"subject"},"order":"order ASC","where":{"tagId":"${allData.tagId}"}}&exploreHomeSubjectFilter={"ExploreList":{"include":{"relation":"list-documents","scope":{"include":{"relation":"subject","scope":{"include":[{"relation":"curators","scope":{"fields":["firstName","lastName","name","recentJobTitle","recentCompany","_profileImage","_companyLogo","slug","id"]}},{"relation":"microCourse","scope":{"include":[{"relation":"curators","scope":{"fields":["firstName","lastName","name","recentJobTitle","recentCompany","_profileImage","_companyLogo","slug","id"]}},{"relation":"tags"}]}},{"relation":"tags","scope":{"fields":["name","id"]}},{"relation":"user","scope":{"fields":["firstName","lastName","name","recentJobTitle","recentCompany","_profileImage","_companyLogo","slug","id","createdByChet"]}}]}},"order":"order ASC"}}},"MicroCourse":{"order":"order ASC","include":[{"relation":"curators","scope":{"fields":["firstName","lastName","name","recentJobTitle","recentCompany","_profileImage","_companyLogo","slug","id"]}}]}}  `
+        `${allData.baseUrl}filter={"limit":1,"skip":${i},"include":{"relation":"subject"},"order":"order ASC","where":{"tagId":"${allData.tagId}"}}&exploreHomeSubjectFilter={"ExploreList":{"include":{"relation":"list-documents","scope":{"include":{"relation":"subject","scope":{"include":[{"relation":"curators","scope":{"fields":["firstName","lastName","name","recentJobTitle","recentCompany","_profileImage","_companyLogo","slug","id"]}},{"relation":"microCourse","scope":{"include":[{"relation":"curators","scope":{"fields":["firstName","lastName","name","recentJobTitle","recentCompany","_profileImage","_companyLogo","slug","id"]}},{"relation":"tags"}]}},{"relation":"tags","scope":{"fields":["name","id"]}},{"relation":"user","scope":{"fields":["firstName","lastName","name","recentJobTitle","recentCompany","_profileImage","_companyLogo","slug","id","createdByChet"]}}]}},"order":"order ASC"}}},"MicroCourse":{"order":"order ASC","include":[{"relation":"curators","scope":{"fields":["firstName","lastName","name","recentJobTitle","recentCompany","_profileImage","_companyLogo","slug","id"]}}]}}  `
       );
       console.log(data);
-      setInstance(...instance, data.data[0].subject);
+      setInstance(...instance, data?.data[0]?.subject);
     }
   };
 

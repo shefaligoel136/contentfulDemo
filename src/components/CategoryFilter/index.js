@@ -6,8 +6,8 @@ const Index = ({ categoryData }) => {
     <div>
       {console.log("all", categoryData)}
       {categoryData.map((data) => {
-        if (data.fields.vale === "All") {
-          return <FilterFunction allData={data} />;
+        if (data.fields.value === "all") {
+          return <FilterFunction allData={data.fields} />;
         }
         return;
       })}
