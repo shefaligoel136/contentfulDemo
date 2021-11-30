@@ -4,7 +4,6 @@ import "./index.css";
 
 import { client } from "./client";
 import Categories from "./components/Category/categories";
-import IndexCategory from "./components/CategoryFilter";
 
 class App extends React.Component {
   state = {
@@ -40,7 +39,6 @@ class App extends React.Component {
           <main>
             <div className="wrapper">
               <Categories categories={this.state.categoryData} />
-              <IndexCategory categoryData={this.state.categoryData} />
             </div>
           </main>
         </div>

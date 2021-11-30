@@ -25,6 +25,7 @@ code {
   border: 1px solid blue;
   padding: 10px;
   border-radius: 20px;
+  cursor: pointer; 
 }
 
 .slide {
@@ -37,4 +38,8 @@ code {
   padding: 20px;
   border-radius: 10px;
   border: 1px solid black;
+}
+
+.exploreHome{
+  margin: 30px 0px;
 }
