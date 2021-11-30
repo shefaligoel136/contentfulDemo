@@ -16,30 +16,8 @@ code {
   margin: 20px;
 }
 
-.categoryFlex {
-  display: flex;
-  gap: 20px;
-}
-
-.category {
-  border: 1px solid blue;
-  padding: 10px;
-  border-radius: 20px;
-  cursor: pointer; 
-}
-
-.slide {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 20px;
-}
-
-.courseCard1 {
-  padding: 20px;
-  border-radius: 10px;
-  border: 1px solid black;
-}
-
-.exploreHome{
-  margin: 30px 0px;
+.publicPage{
+  margin: 40px;
+  text-align: center;
+  align-items: center;
 }

@@ -1,14 +1,16 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import "./index.css";
 
 import { client } from "./client";
-import Categories from "./components/Category/categories";
+import PublicPage from "./components/pages/public";
+import PrivatePage from "./components/pages/private";
 
 class App extends React.Component {
   state = {
-    categories: [],
-    categoryData: [],
+    privatePage: {},
+    publicPage: {},
   };
 
   componentDidMount() {
@@ -16,11 +18,11 @@ class App extends React.Component {
       .getEntries()
       .then((response) => {
         for (const item of response.items) {
-          console.log(item);
-          if (item.sys.contentType.sys.id === "contentType") {
-            this.setState({
-              categoryData: [...this.state.categoryData, item],
-            });
+          if (item.sys.contentType.sys.id === "pages") {
+            item.fields.pageName === "private-page" &&
+              this.setState({ privatePage: { ...item.fields } });
+            item.fields.pageName === "public-page" &&
+              this.setState({ publicPage: { ...item.fields } });
           }
         }
       })
@@ -29,20 +31,32 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="container">
-          <header>
-            <div className="wrapper">
-              <span className="logo">React and Contentful</span>
-            </div>
-          </header>
-          <main>
-            <div className="wrapper">
-              <Categories categories={this.state.categoryData} />
-            </div>
-          </main>
-        </div>
-      </div>
+      <>
+        <Router>
+          <Routes>
+            <Route path="/" exact element={<h1>Home Screen</h1>}></Route>
+            <Route
+              exact
+              path="/public"
+              element={<PublicPage pageData={this.state.publicPage} />}
+            ></Route>
+            <Route
+              exact
+              path="/private"
+              element={
+                this.state.privatePage?.isVisible ? (
+                  <PrivatePage pageData={this.state.privatePage} />
+                ) : (
+                  <h1>
+                    You don't have access to this page Redirect To{" "}
+                    <Link to="/">HomePage</Link>{" "}
+                  </h1>
+                )
+              }
+            ></Route>
+          </Routes>
+        </Router>
+      </>
     );
   }
 }
