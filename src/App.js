@@ -17,14 +17,16 @@ class App extends React.Component {
     client
       .getEntries()
       .then((response) => {
-        for (const item of response.items) {
-          if (item.sys.contentType.sys.id === "pages") {
-            item.fields.pageName === "private-page" &&
-              this.setState({ privatePage: { ...item.fields } });
-            item.fields.pageName === "public-page" &&
-              this.setState({ publicPage: { ...item.fields } });
-          }
-        }
+        // for (const item of response.items) {
+          // if (item.sys.contentType.sys.id === "pages") {
+          //   item.fields.pageName === "private-page" &&
+          //     this.setState({ privatePage: { ...item.fields } });
+          //   item.fields.pageName === "public-page" &&
+          //     this.setState({ publicPage: { ...item.fields } });
+          // }
+          response.items.map(entry => entry.delete())
+          console.log(response.items);
+        // }
       })
       .catch(console.error);
   }
@@ -32,7 +34,7 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <Router>
+        {/* <Router>
           <Routes>
             <Route path="/" exact element={<h1>Home Screen</h1>}></Route>
             <Route
@@ -55,7 +57,7 @@ class App extends React.Component {
               }
             ></Route>
           </Routes>
-        </Router>
+        </Router> */}
       </>
     );
   }

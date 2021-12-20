@@ -68,3 +68,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+###
+
+contentful space import --environment-id=master-prod-1 --content-file=contentful-export-S.json
+
+STAGING - contentful space export --config staging-config.json
+MASTER - contentful space export --config master-config.json
